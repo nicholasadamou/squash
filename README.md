@@ -44,7 +44,7 @@ Squish is built with modern web technologies:
 ### Prerequisites
 
 - Node.js 18 or later
-- npm 7 or later
+- pnpm 10.x or later
 
 ### Installation
 
