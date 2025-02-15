@@ -1,4 +1,4 @@
-# Squash 🎨
+# Squash 🎨 [![Run Tests](https://github.com/nicholasadamou/squash/actions/workflows/tests.yml/badge.svg)](https://github.com/nicholasadamou/squash/actions/workflows/tests.yml)
 
 ![React](https://img.shields.io/badge/React-%2320232a.svg?style=flat-square&logo=react&logoColor=%2361DAFB)
 ![TypeScript](https://img.shields.io/badge/-TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white)
