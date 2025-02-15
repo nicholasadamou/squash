@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"skipLibCheck": true,
+
+		/* Bundler mode */
+		"moduleResolution": "node",
+		"esModuleInterop": true,
+		"jsx": "react-jsx",
+
+		/* Linting */
+		"strict": true,
+		"types": ["jest", "@testing-library/jest-dom", "node"],
+	},
+	"include": ["src/**/*.ts", "src/**/*.tsx", "__tests__/**/*.ts", "__tests__/**/*.tsx", "jest-dom.d.ts"]
+}
