@@ -1,10 +1,11 @@
-# Squash 🎨
+# Squash 🎨 [![Run Tests](https://github.com/nicholasadamou/squash/actions/workflows/tests.yml/badge.svg)](https://github.com/nicholasadamou/squash/actions/workflows/tests.yml)
 
 ![React](https://img.shields.io/badge/React-%2320232a.svg?style=flat-square&logo=react&logoColor=%2361DAFB)
 ![TypeScript](https://img.shields.io/badge/-TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/-Tailwind%20CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
 ![Vite](https://img.shields.io/badge/-Vite-646CFF?style=flat-square&logo=vite&logoColor=white)
 ![WebAssembly](https://img.shields.io/badge/-WebAssembly-654FF0?style=flat-square&logo=webassembly&logoColor=white)
+![jest](https://img.shields.io/badge/-Jest-C21325?style=flat-square&logo=jest&logoColor=white)
 
 ![meta](public/meta.png)
 
@@ -64,7 +65,12 @@ pnpm install
 pnpm run dev
 ```
 
-4. Build for production:
+4. Run the tests:
+```bash
+pnpm test
+```
+
+5. Build for production:
 ```bash
 pnpm run build
 ```
