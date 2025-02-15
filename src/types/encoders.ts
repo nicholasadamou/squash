@@ -1,8 +1,3 @@
-export interface AvifEncodeOptions {
-  quality?: number;
-  effort?: number;
-}
-
 export interface JpegEncodeOptions {
   quality?: number;
 }

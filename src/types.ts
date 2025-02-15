@@ -22,3 +22,5 @@ export interface FormatQualitySettings {
 export interface CompressionOptions {
   quality: number;
 }
+
+export type DynamicImport = (module: string) => void;
