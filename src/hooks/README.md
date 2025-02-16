@@ -1,4 +1,4 @@
-# Image Manager and Queue Hooks
+# 🔄 Image Manager and Queue Hooks
 
 The **`useImageManager`** and **`useImageQueue`** hooks in Squash handle the lifecycle of images being processed for compression. Together, they manage image states, queues, parallel processing, and memory cleanup, ensuring a seamless and performant user experience.
 

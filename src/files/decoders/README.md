@@ -1,4 +1,4 @@
-# _Decoders_ Image Processing with ![WebAssembly](https://img.shields.io/badge/-WebAssembly-654FF0?style=flat-square&logo=webassembly&logoColor=white)
+# 📦 _Decoders_ Image Processing with ![WebAssembly](https://img.shields.io/badge/-WebAssembly-654FF0?style=flat-square&logo=webassembly&logoColor=white)
 
 The **decoders** package in Squash handles the encoding and decoding of images using high-performance WebAssembly (WASM) modules. It supports multiple image formats like **AVIF, JPEG, JPEG XL, PNG, and WebP**, providing fast and efficient image processing.
 
