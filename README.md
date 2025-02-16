@@ -264,6 +264,14 @@ jobs:
 3. **Scalability and Performance**
    With Vercel’s edge network, the Squash application is served globally with low latency, providing a fast and seamless user experience.
 
+## [_Decoders_](src/files/decoders): Image Processing with ![WebAssembly](https://img.shields.io/badge/-WebAssembly-654FF0?style=flat-square&logo=webassembly&logoColor=white)
+
+To learn more about the **decoders** package in Squash (the heart of the project), visit the [decoders README](src/files/decoders/README.md).
+
+## [_Hooks_](src/hooks): Image Manager and Queue Hooks
+
+To learn more about the **hooks** package in Squash, visit the [hooks README](src/hooks/README.md).
+
 ## 🛠️ Getting Started
 
 ### Prerequisites
