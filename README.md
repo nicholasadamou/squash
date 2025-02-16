@@ -12,8 +12,6 @@
 
 Squash is a modern, browser-based image compression tool that leverages **WebAssembly** for high-performance image optimization. It supports multiple image formats and provides an intuitive interface for compressing images without compromising quality.
 
----
-
 ## ✨ Features
 
 - 🖼️ **Multiple Image Format Support**: AVIF, JPEG (MozJPEG), JPEG XL, PNG (OxiPNG), WebP
@@ -22,8 +20,6 @@ Squash is a modern, browser-based image compression tool that leverages **WebAss
 - 🔄 **Real-time Preview and Format Conversion**
 - 📉 **Size Reduction Statistics**
 - 📥 **Drag & Drop Interface** with Smart Queue for large files
-
----
 
 ## 🛠️ Technology Stack
 
@@ -35,8 +31,6 @@ Squash is a modern, browser-based image compression tool that leverages **WebAss
 - **Framer Motion**: For animations
 - **GitHub Actions**: For CI/CD
 - **Jest**: For testing
-
----
 
 ## 📚 Architecture
 
@@ -85,8 +79,6 @@ sequenceDiagram
     ClearButton ->> User: Clear all images
 ```
 
----
-
 ## 🔧 Component Interaction
 
 ```mermaid
@@ -110,8 +102,6 @@ The `App` component serves as the main entry point, containing several child com
 - **ImageList**: Displays a list of images.
 - **DownloadAll**: Provides batch download functionality.
 
----
-
 ## 🔄 How Images Are Compressed
 
 ```mermaid
@@ -127,8 +117,6 @@ flowchart TD
 ```
 
 If an image is valid, it is added to the queue. The **WebAssembly module** decodes and compresses the image using the selected codec. If successful, a preview is generated, and the user can download the compressed image.
-
----
 
 ## 📊 State Management
 
@@ -154,8 +142,6 @@ State management is handled through custom hooks:
 - **useImageManager**: Manages image state (add, remove, clear).
 - **useImageQueue**: Manages image compression queue and processing.
 
----
-
 ## 📦 CI/CD Workflow
 
 ```mermaid
@@ -169,8 +155,6 @@ flowchart TD
 ```
 
 GitHub Actions ensures continuous integration and deployment by running tests and deploying the application on successful builds.
-
----
 
 ## 🛠️ Getting Started
 
@@ -195,8 +179,6 @@ GitHub Actions ensures continuous integration and deployment by running tests an
    ```bash
    pnpm run dev
    ```
-
----
 
 ## 💡 Usage
 
