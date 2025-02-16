@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'; // Import Framer Motion
 import type { OutputType, CompressionOptions } from '../types';
 
 interface CompressionOptionsProps {
@@ -14,18 +15,29 @@ export function CompressionOptions({
 									   onOutputTypeChange,
 								   }: CompressionOptionsProps) {
 	return (
-		<div className="space-y-6 bg-white p-6 rounded-lg shadow-sm">
+		<motion.div
+			initial={{ opacity: 0, y: 20 }}
+			animate={{ opacity: 1, y: 0 }}
+			transition={{ duration: 0.5 }}
+			className="space-y-6 bg-white p-6 rounded-lg shadow-sm"
+		>
 			<OutputFormatSelector
 				selectedFormat={outputType}
 				onFormatChange={onOutputTypeChange}
 			/>
 			{outputType !== 'png' && (
-				<QualitySelector
-					quality={options.quality}
-					onQualityChange={(quality) => onOptionsChange({ quality })}
-				/>
+				<motion.div
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.5, delay: 0.2 }}
+				>
+					<QualitySelector
+						quality={options.quality}
+						onQualityChange={(quality) => onOptionsChange({ quality })}
+					/>
+				</motion.div>
 			)}
-		</div>
+		</motion.div>
 	);
 }
 
@@ -35,9 +47,9 @@ interface OutputFormatSelectorProps {
 }
 
 export function OutputFormatSelector({
-								  selectedFormat,
-								  onFormatChange,
-							  }: OutputFormatSelectorProps) {
+										 selectedFormat,
+										 onFormatChange,
+									 }: OutputFormatSelectorProps) {
 	const formats: OutputType[] = ['avif', 'jpeg', 'jxl', 'png', 'webp'];
 
 	return (
@@ -47,8 +59,10 @@ export function OutputFormatSelector({
 			</label>
 			<div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
 				{formats.map((format) => (
-					<button
+					<motion.button
 						key={format}
+						whileHover={{ scale: 1.05 }}
+						whileTap={{ scale: 0.95 }}
 						className={`px-4 py-2 rounded-md text-sm font-medium uppercase ${
 							selectedFormat === format
 								? 'bg-blue-500 text-white'
@@ -57,7 +71,7 @@ export function OutputFormatSelector({
 						onClick={() => onFormatChange(format)}
 					>
 						{format}
-					</button>
+					</motion.button>
 				))}
 			</div>
 		</div>
@@ -75,13 +89,15 @@ function QualitySelector({ quality, onQualityChange }: QualitySelectorProps) {
 			<label className="block text-sm font-medium text-gray-700 mb-2">
 				Quality: {quality}%
 			</label>
-			<input
+			<motion.input
 				type="range"
 				min="1"
 				max="100"
 				value={quality}
 				onChange={(e) => onQualityChange(Number(e.target.value))}
 				className="w-full"
+				whileHover={{ scale: 1.02 }}
+				whileFocus={{ scale: 1.02 }}
 			/>
 		</div>
 	);

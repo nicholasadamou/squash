@@ -1,4 +1,4 @@
-import type { OutputType, DynamicImport } from '../../types.ts';
+import type {DynamicImport, OutputType} from '../../types.ts';
 
 const wasmInitialized = new Map<OutputType, boolean>();
 
@@ -22,13 +22,47 @@ function normalizeFormat(format: string): OutputType {
 }
 
 /**
+ * Map of WebAssembly modules to load dynamically.
+ */
+const wasmModuleMap: Record<string, () => Promise<unknown>> = {
+	'@jsquash/avif': () => import('@jsquash/avif'),
+	'@jsquash/jpeg': () => import('@jsquash/jpeg'),
+	'@jsquash/jxl': () => import('@jsquash/jxl'),
+	'@jsquash/png': () => import('@jsquash/png'),
+	'@jsquash/webp': () => import('@jsquash/webp'),
+};
+
+/**
+ * Cache for dynamically loaded WebAssembly modules.
+ */
+const moduleCache = new Map<string, Promise<unknown>>();
+
+/**
  * Wrapper around `import()` to dynamically load a WebAssembly module.
  * This is required because we cannot use `import()` directly as a default parameter.
  * @param module - The module specifier to import.
  * @returns A promise that resolves with the module's exports.
  */
-function importModule(module: string): void {
-	import(/* @vite-ignore */ module);
+async function importModule(module: string): Promise<unknown> {
+	if (moduleCache.has(module)) {
+		return moduleCache.get(module); // Return cached promise
+	}
+
+	const loadModule = wasmModuleMap[module];
+	if (!loadModule) {
+		throw new Error(`Module "${module}" is not available.`);
+	}
+
+	const importPromise = loadModule();
+
+	moduleCache.set(module, importPromise); // Cache the promise
+
+	try {
+		return await importPromise;
+	} catch (error) {
+		moduleCache.delete(module); // Remove from cache if the import fails
+		throw new Error(`Failed to load module "${module}". ${error instanceof Error ? error.message : ''}`);
+	}
 }
 
 /**

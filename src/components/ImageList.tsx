@@ -1,10 +1,11 @@
 import React from "react";
-import { X, CheckCircle, AlertCircle, Loader2, Download } from 'lucide-react';
+import { X, CheckCircle, AlertCircle, Loader2, Download } from "lucide-react";
+import { motion } from "framer-motion";
 
-import type { ImageFile } from '../types';
+import type { ImageFile } from "../types";
 
-import { formatFileSize } from '../files/file';
-import { downloadImage } from '../files/download';
+import { formatFileSize } from "../files/file";
+import { downloadImage } from "../files/download";
 
 interface ImageListProps {
 	images: ImageFile[];
@@ -12,14 +13,36 @@ interface ImageListProps {
 }
 
 export function ImageList({ images, onRemove }: ImageListProps) {
-	if (images.length === 0) return null;
-
 	return (
-		<div className="space-y-4">
-			{images.map((image) => (
-				<ImageListItem key={image.id} image={image} onRemove={onRemove} />
-			))}
-		</div>
+		<motion.div
+			initial={{ y: 200, opacity: 0 }}
+			animate={{ y: 0, opacity: 1 }}
+			transition={{ type: "spring", stiffness: 100, damping: 20 }}
+			className="space-y-4"
+		>
+			{images.length === 0 ? (
+				<motion.div
+					initial={{ y: 50, opacity: 0 }}
+					animate={{ y: 0, opacity: 1 }}
+					transition={{ duration: 0.3 }}
+					className="bg-white rounded-lg shadow-sm p-4 text-center text-gray-500"
+				>
+					<p>No images added yet.</p>
+					<p className="text-sm">Drag and drop images to get started.</p>
+				</motion.div>
+			) : (
+				<motion.div
+					initial={{ y: 50, opacity: 0 }}
+					animate={{ y: 0, opacity: 1 }}
+					transition={{ duration: 0.3 }}
+					className="flex flex-col space-y-4 w-full overflow-y-auto bg-white rounded-lg shadow-sm p-4"
+				>
+					{images.map((image) => (
+						<ImageListItem key={image.id} image={image} onRemove={onRemove} />
+					))}
+				</motion.div>
+			)}
+		</motion.div>
 	);
 }
 
@@ -30,7 +53,12 @@ interface ImageListItemProps {
 
 function ImageListItem({ image, onRemove }: ImageListItemProps) {
 	return (
-		<div className="bg-white rounded-lg shadow-sm p-4 flex items-center gap-4">
+		<motion.div
+			initial={{ y: 50, opacity: 0 }}
+			animate={{ y: 0, opacity: 1 }}
+			transition={{ type: "spring", stiffness: 120, damping: 20 }}
+			className="bg-gray-50 rounded-lg shadow-sm p-4 flex items-center gap-4 max-w-full"
+		>
 			{image.preview && (
 				<img
 					src={image.preview}
@@ -43,7 +71,7 @@ function ImageListItem({ image, onRemove }: ImageListItemProps) {
 				<ImageStatus image={image} />
 				<ImageSizeInfo image={image} />
 			</div>
-		</div>
+		</motion.div>
 	);
 }
 
@@ -54,7 +82,7 @@ function ImageHeader({ image, onRemove }: ImageListItemProps) {
 				{image.file.name}
 			</p>
 			<div className="flex items-center gap-2">
-				{image.status === 'complete' && (
+				{image.status === "complete" && (
 					<button
 						onClick={() => downloadImage(image)}
 						className="text-gray-400 hover:text-gray-600"
@@ -76,7 +104,7 @@ function ImageHeader({ image, onRemove }: ImageListItemProps) {
 }
 
 function ImageStatus({ image }: { image: ImageFile }) {
-	const statusMap: Record<ImageFile['status'], React.ReactNode> = {
+	const statusMap: Record<ImageFile["status"], React.ReactNode> = {
 		pending: <span>Ready to process</span>,
 		queued: <span className="text-blue-600">Queued for processing</span>,
 		processing: (
@@ -94,14 +122,16 @@ function ImageStatus({ image }: { image: ImageFile }) {
 		error: (
 			<span className="flex items-center gap-2 text-red-600">
         <AlertCircle className="w-4 h-4" />
-				{image.error || 'Error processing image'}
+				{image.error || "Error processing image"}
       </span>
 		),
 	};
 
 	return (
 		<div className="mt-1 flex items-center gap-2 text-sm text-gray-500">
-			{statusMap[image.status] || <span className="text-gray-400">Unknown status</span>}
+			{statusMap[image.status] || (
+				<span className="text-gray-400">Unknown status</span>
+			)}
 		</div>
 	);
 }
@@ -112,12 +142,13 @@ function ImageSizeInfo({ image }: { image: ImageFile }) {
 			{formatFileSize(image.originalSize)}
 			{image.compressedSize && (
 				<>
-					{' → '}
-					{formatFileSize(image.compressedSize)}{' '}
+					{" → "}
+					{formatFileSize(image.compressedSize)}{" "}
 					<span className="text-green-600">
             (
 						{Math.round(
-							((image.originalSize - image.compressedSize) / image.originalSize) *
+							((image.originalSize - image.compressedSize) /
+								image.originalSize) *
 							100
 						)}
 						% smaller)

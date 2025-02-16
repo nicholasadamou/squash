@@ -17,6 +17,7 @@
     "@jsquash/png": "^3.0.1",
     "@jsquash/webp": "^1.4.0",
     "fflate": "^0.8.2",
+    "framer-motion": "^12.4.3",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
